@@ -1,84 +1,84 @@
-# Wine Quality Prediction Project
+# Wine Quality Prediction using Random Forest Regressor
 
-## Overview
+This project demonstrates a machine learning workflow to predict the quality of red wines based on their physicochemical properties. It utilizes the Wine Quality (red wine) dataset from the UCI Machine Learning Repository and employs a Random Forest Regressor for modeling, including hyperparameter tuning using `GridSearchCV`.
 
-This project uses machine learning to predict the quality of red wine based on its physicochemical properties. The code implements a Random Forest Regressor model to estimate wine quality scores from a dataset of wine attributes.
+## Project Structure
+
+-   `wine_quality_prediction.py`: The main Python script containing the data acquisition, preprocessing, EDA, model development, hyperparameter tuning, and plotting functions.
+-   `results/`: This directory will be created automatically upon running the script and will store all the generated plots and the saved machine learning model.
+-   `README.md`: This file provides an overview of the project and instructions.
 
 ## Features
 
-* Data loading from the UCI Machine Learning Repository
-* Exploratory data analysis (EDA) with visualization
-* Feature engineering (creation of an interaction term)
-* Training a Random Forest regression model
-* Hyperparameter tuning using GridSearchCV
-* Model evaluation with RMSE and R-squared
-* Saving the trained model
-
-## Code Description
-
-The `wine_quality.py` script contains the following sections:
-
-1.  **Imports Libraries**: Imports necessary Python libraries.
-2.  **Data Acquisition**: Loads the wine quality dataset.
-3.  **Data Cleaning and Preprocessing**: Handles missing values and duplicates.
-4.  **Exploratory Data Analysis (EDA)**: Visualizes data characteristics.
-5.  **Feature Engineering**: Creates new features.
-6.  **Data Preparation for Modeling**: Splits data into training and testing sets.
-7.  **Model Development**: Trains a Random Forest model.
-8.  **Hyperparameter Tuning**: Optimizes model parameters.
-9.  **Visualizing the Results**: Plots actual vs. predicted values.
-10. **Saving the Model**: Saves the trained model for later use.
+-   **Data Acquisition:** Loads the red wine quality dataset directly from the UCI repository.
+-   **Data Cleaning & Preprocessing:** Checks for missing values and duplicate rows.
+-   **Exploratory Data Analysis (EDA):**
+    -   Visualizes the correlation matrix to understand relationships between features.
+    -   Generates box plots for each feature to identify potential outliers.
+    -   Creates a pairplot for visualizing pairwise relationships between all variables.
+-   **Feature Engineering:** Includes an example of creating an interaction feature (`acidity_ph_interaction`).
+-   **Model Development:** Implements a Random Forest Regressor to predict wine quality.
+-   **Hyperparameter Tuning:** Uses `GridSearchCV` to find the optimal hyperparameters for the Random Forest model, improving its performance.
+-   **Model Evaluation:** Evaluates model performance using Root Mean Squared Error (RMSE) and R-squared (R2) score.
+-   **Visualization of Results:**
+    -   Scatter plot comparing actual vs. predicted wine quality.
+-   **Model Persistence:** Saves the best-trained model using `joblib` for future use.
 
 ## How to Run the Code
 
-1.  **Prerequisites**:
-    * Python 3.x
-    * Required Python libraries: pandas, scikit-learn, matplotlib, seaborn, joblib.  Install them using `pip`:
-        ```bash
-        pip install pandas scikit-learn matplotlib seaborn joblib
-        ```
-2.  **Run the script**:
-    * Save the code as `wine_quality.py`.
-    * Open a terminal or command prompt in the same directory.
-    * Execute the script:
-        ```bash
-        python wine_quality.py
-        ```
+1.  **Save the code:** Save the provided Python code as `wine_quality_prediction.py` in a directory of your choice.
 
-##  Important Considerations
-    * The script assumes the data file is available at the specified URL.
-    * The Random Forest model can be further improved by experimenting with different hyperparameters and feature engineering techniques.
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
-## Acknowledgments
-* UCI Machine Learning Repository for the wine quality dataset.
-* Scikit-learn documentation for machine learning algorithms and tools.
-* Matplotlib and Seaborn for data visualization.
-* Joblib for model serialization.
-* Pandas for data manipulation and analysis.
-* NumPy for numerical operations.
-* Seaborn for enhanced data visualization.
-* Matplotlib for plotting.
-* Joblib for model serialization.
-* Scikit-learn for machine learning algorithms.
-* Pandas for data manipulation.
-* NumPy for numerical operations.
-* Seaborn for enhanced data visualization.
-* Matplotlib for plotting.
-* Joblib for model serialization.
-* Scikit-learn for machine learning algorithms.
-* Pandas for data manipulation.
-* NumPy for numerical operations.
-* Seaborn for enhanced data visualization.
-* Matplotlib for plotting.
-* Joblib for model serialization.
-* Scikit-learn for machine learning algorithms.
+2.  **Install Required Libraries:**
+    The code relies on the following Python libraries. If you don't have them installed, you can install them using `pip`:
 
-##  Author
-\[Farhan Ahmed\]
-##  Date
-\[2025-05-09\]
-##  Version
-\[1.0\]
-##  Contact
-For any questions or feedback, please contact the author at [Iamfarhan09@gmail.com](mailto:iamfarhan09@gmail.com).
+    ```bash
+    pip install pandas numpy matplotlib seaborn scikit-learn joblib
+    ```
+
+3.  **Run the Script:**
+    Open your terminal or command prompt, navigate to the directory where you saved `wine_quality_prediction.py`, and run the script using the Python interpreter:
+
+    ```bash
+    python wine_quality_prediction.py
+    ```
+
+    The script will print progress messages to the console, including dataset information, model performance metrics, and the best hyperparameters found. It will also create a `results/` directory in the same location as your script and save all the generated plots and the trained model inside it.
+
+## Generated Plots and Saved Model
+
+Upon successful execution, the `results/` directory will contain several `.png` image files and a `.pkl` model file. Here's a description of what you will find:
+
+-   **`correlation_heatmap.png`**:
+    This heatmap displays the Pearson correlation coefficients between all features in the dataset, helping to understand feature relationships and multicollinearity.
+
+    ![Correlation Matrix of Wine Quality Dataset](results/correlation_heatmap.png)
+
+-   **`feature_boxplots.png`**:
+    Box plots for each physicochemical feature, useful for visualizing their distribution and identifying potential outliers.
+
+    ![Boxplot of Each Feature](results/feature_boxplots.png)
+
+-   **`pairplot.png`**:
+    A grid of scatter plots showing pairwise relationships between all features, with histograms on the diagonal. This helps in understanding data distribution and potential linear/non-linear relationships.
+
+    ![Pairplot for Wine Quality Data](results/pairplot.png)
+
+-   **`actual_vs_predicted_quality.png`**:
+    A scatter plot comparing the actual wine quality values from the test set against the quality values predicted by the tuned Random Forest model. The red dashed line represents perfect predictions.
+
+    ![Actual vs. Predicted Wine Quality](results/actual_vs_predicted_quality.png)
+
+-   **`best_rf_model.pkl`**:
+    This file contains the trained Random Forest Regressor model with the best hyperparameters found by `GridSearchCV`, saved using `joblib`. You can load this model later to make new predictions without retraining.
+
+    ```python
+    import joblib
+    # Load the saved model
+    loaded_model = joblib.load('results/best_rf_model.pkl')
+    # Now you can use loaded_model to make predictions
+    # For example: loaded_model.predict(new_data)
+    ```
+
+## Contributions
+
+Feel free to fork the repository, experiment with different models or feature engineering techniques, and contribute improvements.
